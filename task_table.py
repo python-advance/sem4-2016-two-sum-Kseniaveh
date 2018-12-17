@@ -46,11 +46,24 @@ def two_sum_dict(nums, target):
       dic[num] = index      
     else:
       return [dic[n], index]  
+    
+    
+@deco
+def two_sum_iter(nums, target):
+  #Модуль itertools - сборник итераторов.
+  import itertools
+  #itertools.combinations(iterable, [r]) - комбинации длиной r из iterable без повторяющихся элементов.
+  for i in itertools.combinations(nums,2):
+    if sum(i) == target:
+        return([nums.index(el) for el in i])
 
 
 
 if __name__ == "__main__":
   print(two_sum_brute([2, 7, 11, 15], 9))
   print(two_sum_dict([2, 7, 11, 15], 9))
+  print(two_sum_iter([2, 7, 11, 15], 9))
   assert two_sum_brute([2, 7, 11, 15], 9) == [0, 1], 'способ 1'
   assert two_sum_dict([2, 7, 11, 15], 9) == [0, 1], 'способ 2'
+  assert two_sum_iter([2, 7, 11, 15], 9) == [0, 1], 'способ 3'
+  
